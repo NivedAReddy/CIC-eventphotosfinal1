@@ -551,7 +551,7 @@
         <img src="Event3-p4.jpeg" alt="CIC Event 3" />
         <img src="Event4-p4.jpeg" alt="CIC Event 4" />
         <img src="Event5-p4.jpeg" alt="CIC Event 5" />
-        <img src="Event6-p4.jpeg" alt="CIC Event 6" />
+        <img src="Event6-p4.jpeg" alt="CIC Event 6" onerror="this.src='Event6-p1.jpeg'; this.onerror=null;" />
       </div>
     </div>
     
@@ -756,26 +756,20 @@
           
           <!-- Event 6 Series -->
           <div class="gallery-slide">
-            <img src="Event6-p1.jpeg" alt="Event 6 Photo 1" />
+            <img src="Event6-p1.jpeg" alt="Event 6 Photo 1" onerror="this.src='/api/placeholder/900/500'; this.onerror=null;" />
             <div class="image-description">
               <h3>International Dinner</h3>
             </div>
           </div>
           
           <div class="gallery-slide">
-            <img src="Event6-p2.jpeg" alt="Event 6 Photo 2" />
+            <img src="Event6-p2.jpeg" alt="Event 6 Photo 2" onerror="this.src='/api/placeholder/900/500'; this.onerror=null;" />
             <div class="image-description">
             </div>
           </div>
           
           <div class="gallery-slide">
-            <img src="Event6-p3.jpeg" alt="Event 6 Photo 3" />
-            <div class="image-description">
-            </div>
-          </div>
-          
-          <div class="gallery-slide">
-            <img src="Event6-p4.jpeg" alt="Event 6 Photo 4" />
+            <img src="Event6-p3.jpeg" alt="Event 6 Photo 3" onerror="this.src='/api/placeholder/900/500'; this.onerror=null;" />
             <div class="image-description">
             </div>
           </div>
@@ -1056,7 +1050,11 @@
     function updateGalleryDots(galleryId) {
       const gallery = document.getElementById(galleryId);
       const slides = gallery.querySelectorAll('.gallery-slide');
-      const dots = document.getElementById(galleryId.replace('gallery', 'dots')).querySelectorAll('.gallery-dot');
+      const dotsContainer = document.getElementById(galleryId.replace('gallery', 'dots'));
+      
+      if (!dotsContainer) return;
+      
+      const dots = dotsContainer.querySelectorAll('.gallery-dot');
       const totalSlides = slides.length;
       
       // Number of slides per group (approximate)
@@ -1097,6 +1095,21 @@
       });
     }
     
+    // Function to check all images and apply fallbacks
+    function checkBrokenImages() {
+      const images = document.querySelectorAll('img');
+      images.forEach(img => {
+        // Check if the image src contains "Event6" and doesn't have an onerror handler
+        if (img.src.includes('Event6') && !img.hasAttribute('onerror')) {
+          // Add onerror handler to use a fallback image
+          img.onerror = function() {
+            this.src = '/api/placeholder/400/300';
+            this.onerror = null; // Prevent infinite loop
+          };
+        }
+      });
+    }
+    
     // Section navigation highlighting
     window.addEventListener('scroll', () => {
       const sections = document.querySelectorAll('section');
@@ -1125,12 +1138,17 @@
     
     // Initialize galleries
     document.addEventListener('DOMContentLoaded', () => {
+      // Check for broken images and apply fallbacks
+      checkBrokenImages();
+      
       // Initialize scroll-based auto-scrolling
       updateVisibleSectionAutoScroll();
       
       // Set up event listeners for each gallery
       Object.keys(galleries).forEach(galleryId => {
         const gallery = document.getElementById(galleryId);
+        
+        if (!gallery) return; // Skip if gallery doesn't exist
         
         // Update current slide on scroll
         gallery.addEventListener('scroll', () => {
