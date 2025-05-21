@@ -363,9 +363,6 @@
       border-color: var(--primary-color);
     }
 
-    /* Auto-scroll removed - we'll handle this with JavaScript automatically */
-    /* Other style elements remain unchanged */
-
     /* Section Navigator */
     .section-navigator {
       position: fixed;
@@ -399,20 +396,7 @@
       background-color: var(--accent-color);
     }
     
-    .section-dot:hover::after, .section-dot.active::after {
-      content: attr(title);
-      position: absolute;
-      right: 25px;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: var(--primary-color);
-      color: var(--white);
-      padding: 5px 10px;
-      border-radius: var(--radius);
-      font-size: 0.8rem;
-      white-space: nowrap;
-      opacity: 0.9;
-    }
+    /* Removed the title display for the section navigator dots */
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
@@ -927,10 +911,10 @@
 
   <!-- SECTION NAVIGATOR -->
   <div class="section-navigator">
-    <a href="#home" class="section-dot active" title="Home"></a>
-    <a href="#event-photos" class="section-dot" title="Event Photos"></a>
-    <a href="#tabling" class="section-dot" title="Tabling"></a>
-    <a href="#volunteering" class="section-dot" title="Volunteering"></a>
+    <a href="#home" class="section-dot active"></a>
+    <a href="#event-photos" class="section-dot"></a>
+    <a href="#tabling" class="section-dot"></a>
+    <a href="#volunteering" class="section-dot"></a>
   </div>
 
   <!-- JAVASCRIPT -->
