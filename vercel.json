@@ -1,18 +1,13 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "index.html", "use": "@vercel/static" },
-      { "src": "images/**/*", "use": "@vercel/static" }
-    ],
-    "cleanUrls": true,
-    "trailingSlash": false,
-    "routes": [
-      { "src": "/", "dest": "/index.html" },
-      { "src": "/(.*)", "dest": "/$1" }
-    ],
-    "ignore": [
-      "**/__MACOSX/**",
-      "**/.DS_Store"
-    ]
-  }
-  
+  "version": 2,
+  "builds": [
+    { "src": "index.html", "use": "@vercel/static" },
+    { "src": "images/**/*", "use": "@vercel/static" }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}
