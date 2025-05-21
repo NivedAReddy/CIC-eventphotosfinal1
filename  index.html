@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connecting International Communities</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* ---- RESET & VARIABLES ---- */
+    :root {
+      --primary-color: #3a0d10;
+      --primary-light: #5e1c20;
+      --primary-dark: #2a090c;
+      --accent-color: #ffb948;
+      --accent-light: #ffc970;
+      --accent-dark: #e69c28;
+      --white: #ffffff;
+      --black: #000000;
+      --gray-light: #f5f5f5;
+      --gray-medium: #e0e0e0;
+      --gray-dark: #333333;
+      
+      --transition: all 0.3s ease;
+      --radius: 8px;
+      --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      --shadow-strong: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      background-color: var(--white);
+      color: var(--black);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 2rem;
+      position: relative;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      color: var(--primary-color);
+      position: relative;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background-color: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    /* ---- HERO SECTION ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background-color: var(--primary-color);
+      overflow: hidden;
+      padding: 2rem;
+    }
+
+    .cic-logo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      box-shadow: var(--shadow-strong);
+      position: relative;
+      border: 4px solid var(--accent-color);
+    }
+
+    .cic-logo img {
+      width: 140px;
+      height: auto;
+    }
+
+    .logo-text {
+      position: relative;
+      margin-top: 50px;
+      text-align: center;
+      color: var(--white);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 90%;
+      z-index: 10;
+    }
+
+    .logo-text h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .logo-text p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      color: var(--accent-light);
+    }
+
+    /* Moving images animations */
+    .moving-images {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .moving-row {
+      position: absolute;
+      display: flex;
+      gap: 30px;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      width: 100%;
+    }
+
+    .moving-row img {
+      width: 200px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      opacity: 0.6;
+      transition: var(--transition);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .moving-row img:hover {
+      opacity: 1;
+      transform: scale(1.05);
+      border-color: var(--accent-color);
+    }
+
+    /* Position the rows with better spacing */
+    .row-1 {
+      top: 5%;
+      animation: moveLeftToRight 30s linear infinite;
+    }
+
+    .row-2 {
+      top: 30%;
+      animation: moveRightToLeft 25s linear infinite;
+    }
+
+    .row-3 {
+      bottom: 30%;
+      animation: moveLeftToRight 35s linear infinite;
+    }
+
+    .row-4 {
+      bottom: 5%;
+      animation: moveRightToLeft 28s linear infinite;
+    }
+
+    @keyframes moveLeftToRight {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    @keyframes moveRightToLeft {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--accent-color);
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+      z-index: 10;
+      background-color: rgba(42, 9, 12, 0.6);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 2px solid var(--accent-light);
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+      40% { transform: translateY(-20px) translateX(-50%); }
+      60% { transform: translateY(-10px) translateX(-50%); }
+    }
+
+    /* ---- CONTENT SECTIONS ---- */
+    .section-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    /* ---- GALLERY SECTION ---- */
+    .event-photos,
+    .tabling,
+    .volunteering {
+      min-height: 100vh;
+      padding-top: 5rem;
+      position: relative;
+    }
+
+    .event-photos {
+      background: linear-gradient(135deg, var(--white) 0%, var(--gray-light) 100%);
+    }
+
+    .tabling {
+      background: linear-gradient(135deg, var(--gray-light) 0%, var(--white) 100%);
+    }
+
+    .volunteering {
+      background: linear-gradient(135deg, var(--white) 0%, var(--gray-light) 100%);
+    }
+
+    /* Carousel/Slider */
+    .gallery-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: var(--white);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .gallery {
+      display: flex;
+      overflow-x: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      position: relative;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      position: relative;
+    }
+
+    .gallery-slide img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
+
+    .image-description {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to top, rgba(42, 9, 12, 0.9), rgba(42, 9, 12, 0) 100%);
+      color: white;
+      padding: 2.5rem 1.5rem 1.5rem;
+      text-align: left;
+      border-bottom-left-radius: var(--radius);
+      border-bottom-right-radius: var(--radius);
+    }
+
+    .image-description h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent-light);
+    }
+
+    .image-description p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* Navigation controls */
+    .gallery-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+    }
+
+    .gallery-nav button {
+      background: var(--primary-color);
+      color: var(--white);
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-nav button:hover {
+      background: var(--accent-color);
+      color: var(--primary-dark);
+      transform: translateY(-3px);
+    }
+
+    .gallery-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    .gallery-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--gray-dark);
+      opacity: 0.3;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .gallery-dot.active {
+      opacity: 1;
+      background-color: var(--accent-color);
+      transform: scale(1.2);
+      border-color: var(--primary-color);
+    }
+
+    /* Auto-scroll removed - we'll handle this with JavaScript automatically */
+    /* Other style elements remain unchanged */
+
+    /* Section Navigator */
+    .section-navigator {
+      position: fixed;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      background-color: rgba(42, 9, 12, 0.7);
+      padding: 15px 10px;
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--white);
+      opacity: 0.6;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .section-dot:hover, .section-dot.active {
+      opacity: 1;
+      transform: scale(1.3);
+      background-color: var(--accent-color);
+    }
+    
+    .section-dot:hover::after, .section-dot.active::after {
+      content: attr(title);
+      position: absolute;
+      right: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 5px 10px;
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      white-space: nowrap;
+      opacity: 0.9;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .cic-logo {
+        width: 180px;
+        height: 180px;
+      }
+      
+      .cic-logo img {
+        width: 120px;
+      }
+      
+      .logo-text {
+        margin-top: 40px;
+      }
+      
+      .logo-text h1 {
+        font-size: 2rem;
+      }
+      
+      .moving-row img {
+        width: 180px;
+        height: 120px;
+      }
+      
+      .gallery-slide img {
+        height: 400px;
+      }
+      
+      .section-navigator {
+        right: 15px;
+        padding: 10px 8px;
+      }
+      
+      .section-dot {
+        width: 12px;
+        height: 12px;
+      }
+      
+      .gallery-nav button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h2 {
+        font-size: 2rem;
+      }
+      
+      .cic-logo {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .cic-logo img {
+        width: 100px;
+      }
+      
+      .logo-text {
+        margin-top: 30px;
+      }
+      
+      .logo-text h1 {
+        font-size: 1.6rem;
+      }
+      
+      .logo-text p {
+        font-size: 1rem;
+      }
+      
+      .moving-row img {
+        width: 150px;
+        height: 100px;
+      }
+      
+      .gallery-slide img {
+        height: 300px;
+      }
+      
+      .image-description h3 {
+        font-size: 1.3rem;
+      }
+      
+      .image-description p {
+        font-size: 0.9rem;
+      }
+      
+      .auto-scroll {
+        padding: 0.6rem 1rem;
+      }
+      
+      .auto-scroll label {
+        font-size: 0.9rem;
+      }
+      
+      .scroll-indicator {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HERO SECTION WITH LOGO -->
+  <section id="home" class="hero">
+    <div class="moving-images">
+      <div class="moving-row row-1">
+        <img src="Event1-p1.jpeg" alt="CIC Event 1" />
+        <img src="Event2-p1.jpeg" alt="CIC Event 2" />
+        <img src="Event3-p1.jpeg" alt="CIC Event 3" />
+        <img src="Event4-p1.jpeg" alt="CIC Event 4" />
+        <img src="Event5-p1.jpeg" alt="CIC Event 5" />
+        <img src="Event6-p1.jpeg" alt="CIC Event 6" />
+      </div>
+      <div class="moving-row row-2">
+        <img src="Event1-p2.jpeg" alt="CIC Event 1" />
+        <img src="Event2-p2.jpeg" alt="CIC Event 2" />
+        <img src="Event3-p2.jpeg" alt="CIC Event 3" />
+        <img src="Event4-p2.jpeg" alt="CIC Event 4" />
+        <img src="Event5-p2.jpeg" alt="CIC Event 5" />
+        <img src="Event6-p2.jpeg" alt="CIC Event 6" />
+      </div>
+      <div class="moving-row row-3">
+        <img src="Event1-p3.jpeg" alt="CIC Event 1" />
+        <img src="Event2-p3.jpeg" alt="CIC Event 2" />
+        <img src="Event3-p3.jpeg" alt="CIC Event 3" />
+        <img src="Event4-p3.jpeg" alt="CIC Event 4" />
+        <img src="Event5-p3.jpeg" alt="CIC Event 5" />
+        <img src="Event6-p3.jpeg" alt="CIC Event 6" />
+      </div>
+      <div class="moving-row row-4">
+        <img src="Event1-p4.jpeg" alt="CIC Event 1" />
+        <img src="Event2-p4.jpeg" alt="CIC Event 2" />
+        <img src="Event3-p4.jpeg" alt="CIC Event 3" />
+        <img src="Event4-p4.jpeg" alt="CIC Event 4" />
+        <img src="Event5-p4.jpeg" alt="CIC Event 5" />
+        <img src="Event6-p4.jpeg" alt="CIC Event 6" />
+      </div>
+    </div>
+    
+    <div class="cic-logo">
+      <img src="Logo.jpeg" alt="CIC Logo" />
+    </div>
+    
+    <div class="logo-text">
+      <h1>Connecting International Communities</h1>
+      <p>Connect, Explore, and Impact</p>
+    </div>
+    
+    <a href="#event-photos" class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </a>
+  </section>
+
+  <!-- EVENT PHOTOS SECTION -->
+  <section id="event-photos" class="event-photos">
+    <h2>Event Photos</h2>
+    
+    <div class="section-content">
+      <div class="gallery-container">
+        <div class="gallery" id="event-gallery">
+          <!-- Event 1 Series -->
+          <div class="gallery-slide">
+            <img src="Event1-p1.jpeg" alt="Event 1 Photo 1" />
+            <div class="image-description">
+              <h3>Around The World Welcome</h3>
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event1-p2.jpeg" alt="Event 1 Photo 2" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event1-p3.jpeg" alt="Event 1 Photo 3" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event1-p4.jpeg" alt="Event 1 Photo 4" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <!-- Event 2 Series -->
+          <div class="gallery-slide">
+            <img src="Event2-p1.jpeg" alt="Event 2 Photo 1" />
+            <div class="image-description">
+              <h3>Ice Skating</h3>
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event2-p2.jpeg" alt="Event 2 Photo 2" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event2-p3.jpeg" alt="Event 2 Photo 3" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event2-p4.jpeg" alt="Event 2 Photo 4" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event2-p5.jpeg" alt="Event 2 Photo 5" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <!-- Event 3 Series -->
+          <div class="gallery-slide">
+            <img src="Event3-p1.jpeg" alt="Event 3 Photo 1" />
+            <div class="image-description">
+              <h3>Kayaking</h3>
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event3-p2.jpeg" alt="Event 3 Photo 2" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event3-p3.jpeg" alt="Event 3 Photo 3" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event3-p4.jpeg" alt="Event 3 Photo 4" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <!-- Event 4 Series -->
+          <div class="gallery-slide">
+            <img src="Event4-p1.jpeg" alt="Event 4 Photo 1" />
+            <div class="image-description">
+              <h3>Camp Aloma</h3>
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event4-p2.jpeg" alt="Event 4 Photo 2" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event4-p3.jpeg" alt="Event 4 Photo 3" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event4-p4.jpeg" alt="Event 4 Photo 4" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event4-p5.jpeg" alt="Event 4 Photo 5" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event4-p6.jpeg" alt="Event 4 Photo 6" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event4-p7.jpeg" alt="Event 4 Photo 7" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event4-p8.jpeg" alt="Event 4 Photo 8" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event4-p9.jpeg" alt="Event 4 Photo 9" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event4-p10.jpeg" alt="Event 4 Photo 10" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event4-p11.jpeg" alt="Event 4 Photo 11" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <!-- Event 5 Series -->
+          <div class="gallery-slide">
+            <img src="Event5-p1.jpeg" alt="Event 5 Photo 1" />
+            <div class="image-description">
+              <h3>Carnival Night</h3>
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event5-p2.jpeg" alt="Event 5 Photo 2" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event5-p3.jpeg" alt="Event 5 Photo 3" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event5-p4.jpeg" alt="Event 5 Photo 4" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <!-- Event 6 Series -->
+          <div class="gallery-slide">
+            <img src="Event6-p1.jpeg" alt="Event 6 Photo 1" />
+            <div class="image-description">
+              <h3>International Dinner</h3>
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event6-p2.jpeg" alt="Event 6 Photo 2" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event6-p3.jpeg" alt="Event 6 Photo 3" />
+            <div class="image-description">
+            </div>
+          </div>
+          
+          <div class="gallery-slide">
+            <img src="Event6-p4.jpeg" alt="Event 6 Photo 4" />
+            <div class="image-description">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Gallery Controls -->
+        <div class="gallery-nav">
+          <button class="prev-btn" onclick="moveSlide('event-gallery', -1)">
+            <i class="fas fa-chevron-left"></i> Previous
+          </button>
+          <button class="next-btn" onclick="moveSlide('event-gallery', 1)">
+            Next <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        
+        <div class="gallery-dots" id="event-dots">
+          <!-- Only show 4 dots representing groups of photos -->
+          <span class="gallery-dot active" onclick="goToSlide('event-gallery', 0)"></span>
+          <span class="gallery-dot" onclick="goToSlide('event-gallery', 8)"></span>
+          <span class="gallery-dot" onclick="goToSlide('event-gallery', 16)"></span>
+          <span class="gallery-dot" onclick="goToSlide('event-gallery', 24)"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABLING SECTION -->
+  <section id="tabling" class="tabling">
+    <h2>Tabling</h2>
+    
+    <div class="section-content">
+      <div class="gallery-container">
+        <div class="gallery" id="tabling-gallery">
+          <div class="gallery-slide" id="tabling-slide-1">
+            <img src="Tabling-p1.jpeg" alt="Tabling Photo 1" />
+            <div class="image-description">
+              <h3>Tabling Event</h3>
+              <p>Tabling-p1</p>
+            </div>
+          </div>
+          
+          <div class="gallery-slide" id="tabling-slide-2">
+            <img src="Tabling-p2.jpeg" alt="Tabling Photo 2" />
+            <div class="image-description">
+              <h3>Campus Outreach</h3>
+              <p>Tabling-p2</p>
+            </div>
+          </div>
+          
+          <div class="gallery-slide" id="tabling-slide-3">
+            <img src="Tabling-p3.jpeg" alt="Tabling Photo 3" />
+            <div class="image-description">
+              <h3>Information Table</h3>
+              <p>Tabling-p3</p>
+            </div>
+          </div>
+          
+          <div class="gallery-slide" id="tabling-slide-4">
+            <img src="Tabling-p4.jpeg" alt="Tabling Photo 4" />
+            <div class="image-description">
+              <h3>Student Engagement</h3>
+              <p>Tabling-p4</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Gallery Controls -->
+        <div class="gallery-nav">
+          <button class="prev-btn" onclick="moveSlide('tabling-gallery', -1)">
+            <i class="fas fa-chevron-left"></i> Previous
+          </button>
+          <button class="next-btn" onclick="moveSlide('tabling-gallery', 1)">
+            Next <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        
+        <div class="gallery-dots" id="tabling-dots">
+          <!-- Only show 4 dots -->
+          <span class="gallery-dot active" onclick="goToSlide('tabling-gallery', 0)"></span>
+          <span class="gallery-dot" onclick="goToSlide('tabling-gallery', 1)"></span>
+          <span class="gallery-dot" onclick="goToSlide('tabling-gallery', 2)"></span>
+          <span class="gallery-dot" onclick="goToSlide('tabling-gallery', 3)"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOLUNTEERING SECTION -->
+  <section id="volunteering" class="volunteering">
+    <h2>Volunteering</h2>
+    
+    <div class="section-content">
+      <div class="gallery-container">
+        <div class="gallery" id="volunteering-gallery">
+          <div class="gallery-slide" id="volunteering-slide-1">
+            <img src="V-p0.jpeg" alt="Volunteering Photo 0" />
+            <div class="image-description">
+              <h3>Volunteer Meeting</h3>
+              <p>V-p0</p>
+            </div>
+          </div>
+          
+          <div class="gallery-slide" id="volunteering-slide-2">
+            <img src="V-p1.jpeg" alt="Volunteering Photo 1" />
+            <div class="image-description">
+              <h3>Service Project</h3>
+              <p>V-p1</p>
+            </div>
+          </div>
+          
+          <div class="gallery-slide" id="volunteering-slide-3">
+            <img src="V-p2.jpeg" alt="Volunteering Photo 2" />
+            <div class="image-description">
+              <h3>Team Effort</h3>
+              <p>V-p2</p>
+            </div>
+          </div>
+          
+          <div class="gallery-slide" id="volunteering-slide-4">
+            <img src="V-p3.jpeg" alt="Volunteering Photo 3" />
+            <div class="image-description">
+              <h3>Group Activity</h3>
+              <p>V-p3</p>
+            </div>
+          </div>
+          
+          <div class="gallery-slide" id="volunteering-slide-5">
+            <img src="V-p4.jpeg" alt="Volunteering Photo 4" />
+            <div class="image-description">
+              <h3>Outdoor Volunteering</h3>
+              <p>V-p4</p>
+            </div>
+          </div>
+          
+          <div class="gallery-slide" id="volunteering-slide-6">
+            <img src="V-p5.jpeg" alt="Volunteering Photo 5" />
+            <div class="image-description">
+              <h3>Vehicle Support</h3>
+              <p>V-p5</p>
+            </div>
+          </div>
+          
+          <div class="gallery-slide" id="volunteering-slide-7">
+            <img src="V-p6.jpeg" alt="Volunteering Photo 6" />
+            <div class="image-description">
+              <h3>Forest Cleanup</h3>
+              <p>V-p6</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Gallery Controls -->
+        <div class="gallery-nav">
+          <button class="prev-btn" onclick="moveSlide('volunteering-gallery', -1)">
+            <i class="fas fa-chevron-left"></i> Previous
+          </button>
+          <button class="next-btn" onclick="moveSlide('volunteering-gallery', 1)">
+            Next <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        
+        <div class="gallery-dots" id="volunteering-dots">
+          <!-- Only show 4 dots -->
+          <span class="gallery-dot active" onclick="goToSlide('volunteering-gallery', 0)"></span>
+          <span class="gallery-dot" onclick="goToSlide('volunteering-gallery', 2)"></span>
+          <span class="gallery-dot" onclick="goToSlide('volunteering-gallery', 4)"></span>
+          <span class="gallery-dot" onclick="goToSlide('volunteering-gallery', 6)"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION NAVIGATOR -->
+  <div class="section-navigator">
+    <a href="#home" class="section-dot active" title="Home"></a>
+    <a href="#event-photos" class="section-dot" title="Event Photos"></a>
+    <a href="#tabling" class="section-dot" title="Tabling"></a>
+    <a href="#volunteering" class="section-dot" title="Volunteering"></a>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Slide navigation functions
+    const galleries = {
+      'event-gallery': { current: 0, interval: null },
+      'tabling-gallery': { current: 0, interval: null },
+      'volunteering-gallery': { current: 0, interval: null }
+    };
+    
+    function moveSlide(galleryId, direction) {
+      const gallery = document.getElementById(galleryId);
+      const slides = gallery.querySelectorAll('.gallery-slide');
+      
+      // Clear any existing interval to avoid conflicts
+      clearInterval(galleries[galleryId].interval);
+      
+      galleries[galleryId].current = (galleries[galleryId].current + direction + slides.length) % slides.length;
+      
+      // Update the scroll position
+      const slideWidth = gallery.clientWidth;
+      gallery.scrollLeft = galleries[galleryId].current * slideWidth;
+      
+      // Update dots based on groups
+      updateGalleryDots(galleryId);
+      
+      // Restart auto-scroll if this section is in view
+      const section = gallery.closest('section');
+      if (isElementInViewport(section)) {
+        startAutoScroll(galleryId);
+      }
+    }
+    
+    function goToSlide(galleryId, index) {
+      const gallery = document.getElementById(galleryId);
+      const slides = gallery.querySelectorAll('.gallery-slide');
+      
+      // Clear any existing interval to avoid conflicts
+      clearInterval(galleries[galleryId].interval);
+      
+      if (index >= 0 && index < slides.length) {
+        galleries[galleryId].current = index;
+        
+        // Update the scroll position
+        const slideWidth = gallery.clientWidth;
+        gallery.scrollLeft = galleries[galleryId].current * slideWidth;
+        
+        // Update dots based on groups
+        updateGalleryDots(galleryId);
+      }
+      
+      // Restart auto-scroll if this section is in view
+      const section = gallery.closest('section');
+      if (isElementInViewport(section)) {
+        startAutoScroll(galleryId);
+      }
+    }
+    
+    function startAutoScroll(galleryId) {
+      // Clear any existing interval to avoid conflicts
+      clearInterval(galleries[galleryId].interval);
+      
+      // Set a new interval
+      galleries[galleryId].interval = setInterval(() => {
+        const gallery = document.getElementById(galleryId);
+        if (gallery) { // Make sure the gallery still exists
+          const slides = gallery.querySelectorAll('.gallery-slide');
+          
+          galleries[galleryId].current = (galleries[galleryId].current + 1) % slides.length;
+          
+          // Update the scroll position
+          const slideWidth = gallery.clientWidth;
+          gallery.scrollLeft = galleries[galleryId].current * slideWidth;
+          
+          // Update dots based on groups
+          updateGalleryDots(galleryId);
+        }
+      }, 5000); // Change slide every 5 seconds
+    }
+    
+    function stopAutoScroll(galleryId) {
+      clearInterval(galleries[galleryId].interval);
+      galleries[galleryId].interval = null;
+    }
+    
+    // Check if an element is in the viewport
+    function isElementInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+      
+      // Consider element in viewport if it's at least 50% visible
+      const vertInView = (rect.top <= windowHeight * 0.5) && ((rect.top + rect.height) >= windowHeight * 0.5);
+      const horInView = (rect.left <= windowWidth) && ((rect.left + rect.width) >= 0);
+      
+      return vertInView && horInView;
+    }
+    
+    function updateGalleryDots(galleryId) {
+      const gallery = document.getElementById(galleryId);
+      const slides = gallery.querySelectorAll('.gallery-slide');
+      const dots = document.getElementById(galleryId.replace('gallery', 'dots')).querySelectorAll('.gallery-dot');
+      const totalSlides = slides.length;
+      
+      // Number of slides per group (approximate)
+      const slidesPerGroup = Math.ceil(totalSlides / dots.length);
+      
+      // Calculate which group the current slide belongs to
+      const currentSlide = galleries[galleryId].current;
+      const currentGroup = Math.floor(currentSlide / slidesPerGroup);
+      
+      // Update active dot
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentGroup);
+      });
+    }
+    
+    // Update auto-scrolling based on which section is visible
+    function updateVisibleSectionAutoScroll() {
+      // Get all sections with galleries
+      const gallerySections = [
+        document.getElementById('event-photos'),
+        document.getElementById('tabling'),
+        document.getElementById('volunteering')
+      ];
+      
+      // Check each section
+      gallerySections.forEach(section => {
+        if (!section) return; // Skip if section doesn't exist
+        
+        const galleryId = section.querySelector('.gallery').id;
+        
+        if (isElementInViewport(section)) {
+          // Start auto-scroll for visible section
+          startAutoScroll(galleryId);
+        } else {
+          // Stop auto-scroll for hidden sections
+          stopAutoScroll(galleryId);
+        }
+      });
+    }
+    
+    // Section navigation highlighting
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section');
+      const navDots = document.querySelectorAll('.section-navigator .section-dot');
+      
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navDots.forEach(dot => {
+        dot.classList.remove('active');
+        if (dot.getAttribute('href').substring(1) === current) {
+          dot.classList.add('active');
+        }
+      });
+      
+      // Update which galleries should auto-scroll
+      updateVisibleSectionAutoScroll();
+    });
+    
+    // Initialize galleries
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize scroll-based auto-scrolling
+      updateVisibleSectionAutoScroll();
+      
+      // Set up event listeners for each gallery
+      Object.keys(galleries).forEach(galleryId => {
+        const gallery = document.getElementById(galleryId);
+        
+        // Update current slide on scroll
+        gallery.addEventListener('scroll', () => {
+          const slideWidth = gallery.clientWidth;
+          const scrollPosition = gallery.scrollLeft;
+          const currentSlide = Math.round(scrollPosition / slideWidth);
+          
+          if (currentSlide !== galleries[galleryId].current) {
+            galleries[galleryId].current = currentSlide;
+            
+            // Update dots based on groups
+            updateGalleryDots(galleryId);
+          }
+        });
+        
+        // Initialize dots
+        updateGalleryDots(galleryId);
+      });
+    });
+  </script>
+</body>
+</html>
